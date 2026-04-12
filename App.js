@@ -21,153 +21,156 @@ const STAGE_COLOR = {
   "신고서 초안 발송":  { bg: "#d1e7dd", text: "#0a3622", dot: "#198754" },
   "납부서 발송":       { bg: "#e2d9f3", text: "#432874", dot: "#6f42c1" },
 };
+
+const INCOME_TYPES = ["사업소득", "근로소득", "임대소득", "기타소득", "금융소득", "양도소득"];
+
 const PALETTE = ["#3b82f6","#10b981","#f59e0b","#ef4444","#8b5cf6","#06b6d4","#f97316","#ec4899"];
 
 const RAW = [
-  { no:1,   staff:"곽민영", name:"돌리앗" },
-  { no:2,   staff:"곽민영", name:"힌지큐브" },
-  { no:3,   staff:"곽민영", name:"심가당" },
-  { no:4,   staff:"곽민영", name:"아이제이네일" },
-  { no:5,   staff:"곽민영", name:"링커" },
-  { no:6,   staff:"곽민영", name:"아이스드림 퇴촌 (서동진)" },
-  { no:7,   staff:"곽민영", name:"아이스드림 (서수현)" },
-  { no:8,   staff:"곽민영", name:"건강운동과학연구소(지무엽)" },
-  { no:9,   staff:"곽민영", name:"아뜰리에호수 안양" },
-  { no:10,  staff:"곽민영", name:"샤인소프트_신광배" },
-  { no:11,  staff:"곽민영", name:"샤인소프트_신미나" },
-  { no:12,  staff:"곽민영", name:"샤인소프트_신미나 어머니" },
-  { no:13,  staff:"곽민영(신고대리)", name:"돌리앗 이모님(문정애)" },
-  { no:14,  staff:"곽민영(신고대리)", name:"김현조 신고대리 (1)" },
-  { no:15,  staff:"곽민영(신고대리)", name:"김현조 신고대리 (2)" },
-  { no:16,  staff:"곽민영(신고대리)", name:"김현조 신고대리 (3)" },
-  { no:17,  staff:"곽민영(신고대리)", name:"김현조 신고대리 (4)" },
-  { no:18,  staff:"방민혁", name:"89MM" },
-  { no:19,  staff:"방민혁", name:"포차마실" },
-  { no:20,  staff:"방민혁", name:"SH디자인" },
-  { no:21,  staff:"방민혁", name:"한촌설렁탕 가정점 (박헌진)" },
-  { no:22,  staff:"방민혁", name:"꽃술래" },
-  { no:23,  staff:"방민혁", name:"브레드앤쿡(최은주)" },
-  { no:24,  staff:"방민혁", name:"에프엔에스_최진" },
-  { no:25,  staff:"방민혁", name:"아뜰리에호수 부천" },
-  { no:26,  staff:"방민혁", name:"아뜰리에호수 분당" },
-  { no:27,  staff:"방민혁", name:"아뜰리에호수 수원인계점" },
-  { no:28,  staff:"방민혁", name:"파노 법률사무소" },
-  { no:29,  staff:"방민혁", name:"아뜰리에호수 대전" },
-  { no:30,  staff:"방민혁", name:"아뜰리에호수 송도" },
-  { no:31,  staff:"방민혁", name:"스터드" },
-  { no:32,  staff:"방민혁", name:"아뜰리에호수 대구" },
-  { no:33,  staff:"방민혁", name:"아뜰리에호수 부평" },
-  { no:34,  staff:"방민혁", name:"오롯밀(꽃술래 대표)" },
-  { no:35,  staff:"방민혁", name:"이비엠(정경호 대표)" },
-  { no:36,  staff:"방민혁", name:"봄패밀리_개인들 5명" },
-  { no:37,  staff:"방민혁(신고대리)", name:"메종꼬꼬" },
-  { no:38,  staff:"박지석", name:"제이널리스튜디오" },
-  { no:39,  staff:"박지석", name:"임대사업자(봄패밀리)_김지수" },
-  { no:40,  staff:"박지석", name:"임대사업자(봄패밀리)_김혜수" },
-  { no:41,  staff:"박지석", name:"BS컨설팅" },
-  { no:42,  staff:"박지석", name:"클레프뮤직" },
-  { no:43,  staff:"박지석", name:"리하이로라" },
-  { no:44,  staff:"박지석", name:"존앤321(윤종규)" },
-  { no:45,  staff:"박지석", name:"미태리파스타 분당아름마을점" },
-  { no:46,  staff:"박지석", name:"피어리필라테스" },
-  { no:47,  staff:"박지석", name:"무브앤발란스 근골격운동센터" },
-  { no:48,  staff:"박지석", name:"행복공간 (평택)" },
-  { no:49,  staff:"박지석", name:"행복공간 (천안)" },
-  { no:50,  staff:"박지석", name:"구가네찹쌀탕수육(구형모)" },
-  { no:51,  staff:"박지석", name:"애플꼬마김밥 송도 닥터플러스점" },
-  { no:52,  staff:"박지석", name:"엑스바이트" },
-  { no:53,  staff:"박지석", name:"인딕슬로우" },
-  { no:54,  staff:"박지석", name:"리엔터테인먼트" },
-  { no:55,  staff:"박지석", name:"바른(조미경)" },
-  { no:56,  staff:"박지석", name:"제이제이 컨설팅" },
-  { no:57,  staff:"박지석", name:"연세탑수학과학전문학원" },
-  { no:58,  staff:"박지석", name:"[성실] 미인메디코스" },
-  { no:59,  staff:"박지석", name:"엠디김밥연구소(홍지미)" },
-  { no:60,  staff:"박지석", name:"에스케이랩" },
-  { no:61,  staff:"박지석", name:"노벨라(이동국)" },
-  { no:62,  staff:"박지석", name:"곱창의 전설" },
-  { no:63,  staff:"박지석", name:"수유리 혼밥왕 양주광사점" },
-  { no:64,  staff:"박지석", name:"봄패밀리(제주)" },
-  { no:65,  staff:"박지석", name:"곱창의전설 (2)" },
-  { no:66,  staff:"박지석", name:"봄패밀리(제주) (2)" },
-  { no:67,  staff:"박지석", name:"한미비자지원센터(이병기)" },
-  { no:68,  staff:"박지석", name:"안목" },
-  { no:69,  staff:"박지석", name:"이모델클랜" },
-  { no:70,  staff:"박지석", name:"엔오" },
-  { no:71,  staff:"박지석", name:"미라클엔지니어링" },
-  { no:72,  staff:"박지석", name:"펀카(개인사업자)" },
-  { no:73,  staff:"박지석(신고대리)", name:"플러스씨원(플러스프로)" },
-  { no:74,  staff:"박지석(신고대리)", name:"오케이비즈(플러스프로)" },
-  { no:75,  staff:"박지석(신고대리)", name:"고든소프트웨어" },
-  { no:76,  staff:"박지석(신고대리)", name:"바른소프트웨어" },
-  { no:77,  staff:"박지석(신고대리)", name:"중앙전람(김윤정)" },
-  { no:78,  staff:"박지석(신고대리)", name:"미켈란" },
-  { no:79,  staff:"박지석(신고대리)", name:"중앙전람(최숙향)_부동산" },
-  { no:80,  staff:"박지석(신고대리)", name:"삐요레(엠디김밥)" },
-  { no:81,  staff:"박지석(신고대리)", name:"행복마케팅(박선홍)" },
-  { no:82,  staff:"박지석(신고대리)", name:"박진아" },
-  { no:83,  staff:"임유빈", name:"램퍼스(이정윤)" },
-  { no:84,  staff:"임유빈", name:"더 비디" },
-  { no:85,  staff:"임유빈", name:"우리카정비" },
-  { no:86,  staff:"임유빈", name:"광성정보" },
-  { no:87,  staff:"임유빈", name:"레몬캔버스" },
-  { no:88,  staff:"임유빈", name:"바이앤에이" },
-  { no:89,  staff:"임유빈", name:"재원소재" },
-  { no:90,  staff:"임유빈", name:"카액세서리" },
-  { no:91,  staff:"임유빈", name:"모선미" },
-  { no:92,  staff:"임유빈", name:"케이시스템" },
-  { no:93,  staff:"임유빈", name:"데이큐" },
-  { no:94,  staff:"임유빈", name:"참좋은건강연구소" },
-  { no:95,  staff:"임유빈", name:"사이버클라우드" },
-  { no:96,  staff:"임유빈", name:"주원(이주원)" },
-  { no:97,  staff:"임유빈", name:"공차 숭실대점(탁은지)" },
-  { no:98,  staff:"임유빈", name:"보드람치킨(윤영단 대표)" },
-  { no:99,  staff:"임유빈", name:"처갓집 양념치킨 청라호수공원(김영서)" },
-  { no:100, staff:"임유빈", name:"처갓집양념통닭 루원시티(김영기)" },
-  { no:101, staff:"임유빈", name:"제이비엠 영어 학원(대표 민정빈)" },
-  { no:102, staff:"임유빈", name:"케이티와이(대표 김태영)" },
-  { no:103, staff:"임유빈", name:"발리휘트니스" },
-  { no:104, staff:"임유빈", name:"[성실] 한촌설렁탕 청라점" },
-  { no:105, staff:"임유빈", name:"[성실] 한촌설렁탕 도화점" },
-  { no:106, staff:"임유빈", name:"[성실] 현풍닭칼국수(김혜진)" },
-  { no:107, staff:"임유빈", name:"[성실] 한촌설렁탕 영천점(권용태대표)" },
-  { no:108, staff:"임유빈(신고대리)", name:"와이앤솔루션" },
-  { no:109, staff:"임유빈(신고대리)", name:"발리&스쿼시(폐업25.08.22)(간이)" },
-  { no:110, staff:"임유빈(신고대리)", name:"신현준 대표 (대그듀드, 인플루언컴퍼니,티엔샤)" },
-  { no:111, staff:"임유빈(신고대리)", name:"코아루센트럴시티 A906호" },
-  { no:112, staff:"임유빈(신고대리)", name:"코아루센트럴시티 B1010호" },
-  { no:113, staff:"구동현", name:"이우석" },
-  { no:114, staff:"구동현", name:"강상재" },
-  { no:115, staff:"구동현", name:"[성실] 재민연구소" },
-  { no:116, staff:"구동현", name:"[성실] 보험조각가" },
-  { no:117, staff:"구동현", name:"[성실] 문성곤" },
-  { no:118, staff:"구동현", name:"문정현 선수" },
-  { no:119, staff:"구동현", name:"김기호 종합소득세(증여)" },
-  { no:120, staff:"안성은", name:"김영미 임대사업자(와이엠케이)" },
-  { no:121, staff:"안성은", name:"이금향-마장동 (김영미대표 모친)" },
-  { no:122, staff:"안성은", name:"케이컴(성실)" },
-  { no:123, staff:"안성은", name:"당근보험(강신우)" },
-  { no:124, staff:"안성은", name:"마라섬 의정부(컴포즈커피)" },
-  { no:125, staff:"안성은", name:"나원" },
-  { no:126, staff:"안성은", name:"도림천 도룡뇽" },
-  { no:127, staff:"안성은", name:"피에프엘이" },
-  { no:128, staff:"안성은", name:"태희상사" },
-  { no:129, staff:"안성은", name:"호루라기" },
-  { no:130, staff:"안성은", name:"제이에스이(하정국)" },
-  { no:131, staff:"안성은", name:"제이에스이 공동사업자(하수빈/하은빈) (1)" },
-  { no:132, staff:"안성은", name:"제이에스이 공동사업자(하수빈/하은빈) (2)" },
-  { no:133, staff:"안성은", name:"내몸에필라테스(김선영)" },
-  { no:134, staff:"안성은", name:"틈새가게 (4개) / 황신혜" },
-  { no:135, staff:"안성은", name:"샾아이스크림(수택점) (3개) / 오병수" },
-  { no:136, staff:"안성은", name:"[성실] 홍스타츠" },
-  { no:137, staff:"안성은", name:"세일즈마스터코리아" },
-  { no:138, staff:"안성은", name:"파란만잔 영등포구청점" },
-  { no:139, staff:"안성은", name:"역전할머니 분당오리역점" },
-  { no:140, staff:"안성은", name:"컴포즈컴피 (폐업)" },
-  { no:141, staff:"안성은", name:"당근보험(강신우) (2)" },
-  { no:142, staff:"기타", name:"서린테크" },
-  { no:143, staff:"기타", name:"보험설계사 (김유진)" },
-  { no:144, staff:"기타", name:"보험설계사 (양미란)" },
+  { no:1,   staff:"곽민영", name:"돌리앗", proxy:false },
+  { no:2,   staff:"곽민영", name:"힌지큐브", proxy:false },
+  { no:3,   staff:"곽민영", name:"심가당", proxy:false },
+  { no:4,   staff:"곽민영", name:"아이제이네일", proxy:false },
+  { no:5,   staff:"곽민영", name:"링커", proxy:false },
+  { no:6,   staff:"곽민영", name:"아이스드림 퇴촌 (서동진)", proxy:false },
+  { no:7,   staff:"곽민영", name:"아이스드림 (서수현)", proxy:false },
+  { no:8,   staff:"곽민영", name:"건강운동과학연구소(지무엽)", proxy:false },
+  { no:9,   staff:"곽민영", name:"아뜰리에호수 안양", proxy:false },
+  { no:10,  staff:"곽민영", name:"샤인소프트_신광배", proxy:false },
+  { no:11,  staff:"곽민영", name:"샤인소프트_신미나", proxy:false },
+  { no:12,  staff:"곽민영", name:"샤인소프트_신미나 어머니", proxy:false },
+  { no:13,  staff:"곽민영", name:"[신고대리] 돌리앗 이모님(문정애)", proxy:true },
+  { no:14,  staff:"곽민영", name:"[신고대리] 김현조 (1)", proxy:true },
+  { no:15,  staff:"곽민영", name:"[신고대리] 김현조 (2)", proxy:true },
+  { no:16,  staff:"곽민영", name:"[신고대리] 김현조 (3)", proxy:true },
+  { no:17,  staff:"곽민영", name:"[신고대리] 김현조 (4)", proxy:true },
+  { no:18,  staff:"방민혁", name:"89MM", proxy:false },
+  { no:19,  staff:"방민혁", name:"포차마실", proxy:false },
+  { no:20,  staff:"방민혁", name:"SH디자인", proxy:false },
+  { no:21,  staff:"방민혁", name:"한촌설렁탕 가정점 (박헌진)", proxy:false },
+  { no:22,  staff:"방민혁", name:"꽃술래", proxy:false },
+  { no:23,  staff:"방민혁", name:"브레드앤쿡(최은주)", proxy:false },
+  { no:24,  staff:"방민혁", name:"에프엔에스_최진", proxy:false },
+  { no:25,  staff:"방민혁", name:"아뜰리에호수 부천", proxy:false },
+  { no:26,  staff:"방민혁", name:"아뜰리에호수 분당", proxy:false },
+  { no:27,  staff:"방민혁", name:"아뜰리에호수 수원인계점", proxy:false },
+  { no:28,  staff:"방민혁", name:"파노 법률사무소", proxy:false },
+  { no:29,  staff:"방민혁", name:"아뜰리에호수 대전", proxy:false },
+  { no:30,  staff:"방민혁", name:"아뜰리에호수 송도", proxy:false },
+  { no:31,  staff:"방민혁", name:"스터드", proxy:false },
+  { no:32,  staff:"방민혁", name:"아뜰리에호수 대구", proxy:false },
+  { no:33,  staff:"방민혁", name:"아뜰리에호수 부평", proxy:false },
+  { no:34,  staff:"방민혁", name:"오롯밀(꽃술래 대표)", proxy:false },
+  { no:35,  staff:"방민혁", name:"이비엠(정경호 대표)", proxy:false },
+  { no:36,  staff:"방민혁", name:"봄패밀리_개인들 5명", proxy:false },
+  { no:37,  staff:"방민혁", name:"[신고대리] 메종꼬꼬", proxy:true },
+  { no:38,  staff:"박지석", name:"제이널리스튜디오", proxy:false },
+  { no:39,  staff:"박지석", name:"임대사업자(봄패밀리)_김지수", proxy:false },
+  { no:40,  staff:"박지석", name:"임대사업자(봄패밀리)_김혜수", proxy:false },
+  { no:41,  staff:"박지석", name:"BS컨설팅", proxy:false },
+  { no:42,  staff:"박지석", name:"클레프뮤직", proxy:false },
+  { no:43,  staff:"박지석", name:"리하이로라", proxy:false },
+  { no:44,  staff:"박지석", name:"존앤321(윤종규)", proxy:false },
+  { no:45,  staff:"박지석", name:"미태리파스타 분당아름마을점", proxy:false },
+  { no:46,  staff:"박지석", name:"피어리필라테스", proxy:false },
+  { no:47,  staff:"박지석", name:"무브앤발란스 근골격운동센터", proxy:false },
+  { no:48,  staff:"박지석", name:"행복공간 (평택)", proxy:false },
+  { no:49,  staff:"박지석", name:"행복공간 (천안)", proxy:false },
+  { no:50,  staff:"박지석", name:"구가네찹쌀탕수육(구형모)", proxy:false },
+  { no:51,  staff:"박지석", name:"애플꼬마김밥 송도 닥터플러스점", proxy:false },
+  { no:52,  staff:"박지석", name:"엑스바이트", proxy:false },
+  { no:53,  staff:"박지석", name:"인딕슬로우", proxy:false },
+  { no:54,  staff:"박지석", name:"리엔터테인먼트", proxy:false },
+  { no:55,  staff:"박지석", name:"바른(조미경)", proxy:false },
+  { no:56,  staff:"박지석", name:"제이제이 컨설팅", proxy:false },
+  { no:57,  staff:"박지석", name:"연세탑수학과학전문학원", proxy:false },
+  { no:58,  staff:"박지석", name:"[성실] 미인메디코스", proxy:false },
+  { no:59,  staff:"박지석", name:"엠디김밥연구소(홍지미)", proxy:false },
+  { no:60,  staff:"박지석", name:"에스케이랩", proxy:false },
+  { no:61,  staff:"박지석", name:"노벨라(이동국)", proxy:false },
+  { no:62,  staff:"박지석", name:"곱창의 전설", proxy:false },
+  { no:63,  staff:"박지석", name:"수유리 혼밥왕 양주광사점", proxy:false },
+  { no:64,  staff:"박지석", name:"봄패밀리(제주)", proxy:false },
+  { no:65,  staff:"박지석", name:"곱창의전설 (2)", proxy:false },
+  { no:66,  staff:"박지석", name:"봄패밀리(제주) (2)", proxy:false },
+  { no:67,  staff:"박지석", name:"한미비자지원센터(이병기)", proxy:false },
+  { no:68,  staff:"박지석", name:"안목", proxy:false },
+  { no:69,  staff:"박지석", name:"이모델클랜", proxy:false },
+  { no:70,  staff:"박지석", name:"엔오", proxy:false },
+  { no:71,  staff:"박지석", name:"미라클엔지니어링", proxy:false },
+  { no:72,  staff:"박지석", name:"펀카(개인사업자)", proxy:false },
+  { no:73,  staff:"박지석", name:"[신고대리] 플러스씨원(플러스프로)", proxy:true },
+  { no:74,  staff:"박지석", name:"[신고대리] 오케이비즈(플러스프로)", proxy:true },
+  { no:75,  staff:"박지석", name:"[신고대리] 고든소프트웨어", proxy:true },
+  { no:76,  staff:"박지석", name:"[신고대리] 바른소프트웨어", proxy:true },
+  { no:77,  staff:"박지석", name:"[신고대리] 중앙전람(김윤정)", proxy:true },
+  { no:78,  staff:"박지석", name:"[신고대리] 미켈란", proxy:true },
+  { no:79,  staff:"박지석", name:"[신고대리] 중앙전람(최숙향)_부동산", proxy:true },
+  { no:80,  staff:"박지석", name:"[신고대리] 삐요레(엠디김밥)", proxy:true },
+  { no:81,  staff:"박지석", name:"[신고대리] 행복마케팅(박선홍)", proxy:true },
+  { no:82,  staff:"박지석", name:"[신고대리] 박진아", proxy:true },
+  { no:83,  staff:"임유빈", name:"램퍼스(이정윤)", proxy:false },
+  { no:84,  staff:"임유빈", name:"더 비디", proxy:false },
+  { no:85,  staff:"임유빈", name:"우리카정비", proxy:false },
+  { no:86,  staff:"임유빈", name:"광성정보", proxy:false },
+  { no:87,  staff:"임유빈", name:"레몬캔버스", proxy:false },
+  { no:88,  staff:"임유빈", name:"바이앤에이", proxy:false },
+  { no:89,  staff:"임유빈", name:"재원소재", proxy:false },
+  { no:90,  staff:"임유빈", name:"카액세서리", proxy:false },
+  { no:91,  staff:"임유빈", name:"모선미", proxy:false },
+  { no:92,  staff:"임유빈", name:"케이시스템", proxy:false },
+  { no:93,  staff:"임유빈", name:"데이큐", proxy:false },
+  { no:94,  staff:"임유빈", name:"참좋은건강연구소", proxy:false },
+  { no:95,  staff:"임유빈", name:"사이버클라우드", proxy:false },
+  { no:96,  staff:"임유빈", name:"주원(이주원)", proxy:false },
+  { no:97,  staff:"임유빈", name:"공차 숭실대점(탁은지)", proxy:false },
+  { no:98,  staff:"임유빈", name:"보드람치킨(윤영단 대표)", proxy:false },
+  { no:99,  staff:"임유빈", name:"처갓집 양념치킨 청라호수공원(김영서)", proxy:false },
+  { no:100, staff:"임유빈", name:"처갓집양념통닭 루원시티(김영기)", proxy:false },
+  { no:101, staff:"임유빈", name:"제이비엠 영어 학원(대표 민정빈)", proxy:false },
+  { no:102, staff:"임유빈", name:"케이티와이(대표 김태영)", proxy:false },
+  { no:103, staff:"임유빈", name:"발리휘트니스", proxy:false },
+  { no:104, staff:"임유빈", name:"[성실] 한촌설렁탕 청라점", proxy:false },
+  { no:105, staff:"임유빈", name:"[성실] 한촌설렁탕 도화점", proxy:false },
+  { no:106, staff:"임유빈", name:"[성실] 현풍닭칼국수(김혜진)", proxy:false },
+  { no:107, staff:"임유빈", name:"[성실] 한촌설렁탕 영천점(권용태대표)", proxy:false },
+  { no:108, staff:"임유빈", name:"[신고대리] 와이앤솔루션", proxy:true },
+  { no:109, staff:"임유빈", name:"[신고대리] 발리&스쿼시(폐업25.08.22)(간이)", proxy:true },
+  { no:110, staff:"임유빈", name:"[신고대리] 신현준 대표 (대그듀드, 인플루언컴퍼니,티엔샤)", proxy:true },
+  { no:111, staff:"임유빈", name:"[신고대리] 코아루센트럴시티 A906호", proxy:true },
+  { no:112, staff:"임유빈", name:"[신고대리] 코아루센트럴시티 B1010호", proxy:true },
+  { no:113, staff:"구동현", name:"이우석", proxy:false },
+  { no:114, staff:"구동현", name:"강상재", proxy:false },
+  { no:115, staff:"구동현", name:"[성실] 재민연구소", proxy:false },
+  { no:116, staff:"구동현", name:"[성실] 보험조각가", proxy:false },
+  { no:117, staff:"구동현", name:"[성실] 문성곤", proxy:false },
+  { no:118, staff:"구동현", name:"문정현 선수", proxy:false },
+  { no:119, staff:"구동현", name:"김기호 종합소득세(증여)", proxy:false },
+  { no:120, staff:"안성은", name:"김영미 임대사업자(와이엠케이)", proxy:false },
+  { no:121, staff:"안성은", name:"이금향-마장동 (김영미대표 모친)", proxy:false },
+  { no:122, staff:"안성은", name:"케이컴(성실)", proxy:false },
+  { no:123, staff:"안성은", name:"당근보험(강신우)", proxy:false },
+  { no:124, staff:"안성은", name:"마라섬 의정부(컴포즈커피)", proxy:false },
+  { no:125, staff:"안성은", name:"나원", proxy:false },
+  { no:126, staff:"안성은", name:"도림천 도룡뇽", proxy:false },
+  { no:127, staff:"안성은", name:"피에프엘이", proxy:false },
+  { no:128, staff:"안성은", name:"태희상사", proxy:false },
+  { no:129, staff:"안성은", name:"호루라기", proxy:false },
+  { no:130, staff:"안성은", name:"제이에스이(하정국)", proxy:false },
+  { no:131, staff:"안성은", name:"제이에스이 공동사업자(하수빈/하은빈) (1)", proxy:false },
+  { no:132, staff:"안성은", name:"제이에스이 공동사업자(하수빈/하은빈) (2)", proxy:false },
+  { no:133, staff:"안성은", name:"내몸에필라테스(김선영)", proxy:false },
+  { no:134, staff:"안성은", name:"틈새가게 (4개) / 황신혜", proxy:false },
+  { no:135, staff:"안성은", name:"샾아이스크림(수택점) (3개) / 오병수", proxy:false },
+  { no:136, staff:"안성은", name:"[성실] 홍스타츠", proxy:false },
+  { no:137, staff:"안성은", name:"세일즈마스터코리아", proxy:false },
+  { no:138, staff:"안성은", name:"파란만잔 영등포구청점", proxy:false },
+  { no:139, staff:"안성은", name:"역전할머니 분당오리역점", proxy:false },
+  { no:140, staff:"안성은", name:"컴포즈컴피 (폐업)", proxy:false },
+  { no:141, staff:"안성은", name:"당근보험(강신우) (2)", proxy:false },
+  { no:142, staff:"기타", name:"서린테크", proxy:false },
+  { no:143, staff:"기타", name:"보험설계사 (김유진)", proxy:false },
+  { no:144, staff:"기타", name:"보험설계사 (양미란)", proxy:false },
 ];
 
 const STAFF_LIST = [...new Set(RAW.map(c => c.staff))];
@@ -179,9 +182,19 @@ const BASE_CLIENTS = RAW.map(c => ({
   no: c.no,
   staff: c.staff,
   name: c.name,
+  proxy: c.proxy,
   stage: "작성중(담당자)",
   memo: "",
+  revenue: 0,
+  incomeType: "사업소득",
 }));
+
+function fmtRev(n) {
+  if (!n || n === 0) return "—";
+  if (n >= 100000000) return `${(n/100000000).toFixed(1)}억`;
+  if (n >= 10000) return `${Math.round(n/10000)}만`;
+  return n.toLocaleString();
+}
 
 function Toast({ toasts, remove }) {
   return (
@@ -210,6 +223,8 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [editStage, setEditStage] = useState("");
   const [editMemo, setEditMemo] = useState("");
+  const [editRevenue, setEditRevenue] = useState(0);
+  const [editIncomeType, setEditIncomeType] = useState("사업소득");
   const [showModal, setShowModal] = useState(false);
   const [toasts, setToasts] = useState([]);
   const [tid, setTid] = useState(0);
@@ -225,7 +240,7 @@ export default function App() {
     getDocs(colRef).then(snap => {
       if (snap.empty) {
         BASE_CLIENTS.forEach(c => {
-          setDoc(doc(db, "income_clients", c.id), { stage: c.stage, memo: c.memo });
+          setDoc(doc(db, "income_clients", c.id), { stage: c.stage, memo: c.memo, revenue: 0, incomeType: "사업소득" });
         });
       }
     });
@@ -236,6 +251,8 @@ export default function App() {
         ...c,
         stage: dbData[c.id]?.stage || c.stage,
         memo: dbData[c.id]?.memo || c.memo,
+        revenue: dbData[c.id]?.revenue || 0,
+        incomeType: dbData[c.id]?.incomeType || "사업소득",
       })));
       setLoading(false);
     });
@@ -271,6 +288,8 @@ export default function App() {
     setSelected(c);
     setEditStage(c.stage);
     setEditMemo(c.memo);
+    setEditRevenue(c.revenue || 0);
+    setEditIncomeType(c.incomeType || "사업소득");
     setShowModal(true);
   };
 
@@ -279,6 +298,8 @@ export default function App() {
       await setDoc(doc(db, "income_clients", selected.id), {
         stage: editStage,
         memo: editMemo,
+        revenue: Number(editRevenue) || 0,
+        incomeType: editIncomeType,
       });
       toast("저장 완료", `${selected.name.slice(0,15)} 저장됨`, "#10b981", "✅");
     } catch (e) {
@@ -390,7 +411,7 @@ export default function App() {
             <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: "0 3px" }}>
               <thead>
                 <tr>
-                  {["No.", "성함", "담당자", "단계", "메모"].map(h => (
+                  {["No.", "성함", "매출액", "소득유형", "담당자", "단계", "메모"].map(h => (
                     <th key={h} style={{ padding: "8px 12px", textAlign: "left", fontSize: 11, fontWeight: 700, color: "#9ca3af" }}>{h}</th>
                   ))}
                 </tr>
@@ -403,8 +424,17 @@ export default function App() {
                       style={{ background: "#fff", cursor: "pointer", boxShadow: "0 1px 3px rgba(0,0,0,0.05)", transition: "box-shadow 0.15s" }}
                       onMouseEnter={e => e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)"}
                       onMouseLeave={e => e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.05)"}>
-                      <td style={{ padding: "11px 12px", fontSize: 13, fontWeight: 700, color: "#6b7280", borderRadius: "8px 0 0 8px", width: 50 }}>{c.no}</td>
-                      <td style={{ padding: "11px 12px", fontSize: 13, fontWeight: 600, color: "#111827" }}>{c.name}</td>
+                      <td style={{ padding: "11px 12px", fontSize: 13, fontWeight: 700, color: "#6b7280", borderRadius: "8px 0 0 8px", width: 45 }}>{c.no}</td>
+                      <td style={{ padding: "11px 12px", fontSize: 13, fontWeight: 600, color: "#111827", maxWidth: 200 }}>
+                        {c.proxy && <span style={{ fontSize: 10, background: "#fef3c7", color: "#92400e", borderRadius: 4, padding: "1px 5px", marginRight: 5, fontWeight: 700 }}>신고대리</span>}
+                        {c.name.replace(/^\[신고대리\] /, "")}
+                      </td>
+                      <td style={{ padding: "11px 12px", fontSize: 13, fontWeight: 600, color: c.revenue > 0 ? "#111827" : "#d1d5db", width: 80 }}>
+                        {fmtRev(c.revenue)}
+                      </td>
+                      <td style={{ padding: "11px 12px", width: 80 }}>
+                        <span style={{ fontSize: 11, background: "#f0f9ff", color: "#0369a1", borderRadius: 5, padding: "2px 7px", fontWeight: 600 }}>{c.incomeType || "사업소득"}</span>
+                      </td>
                       <td style={{ padding: "11px 12px" }}>
                         <span style={{ background: "#f3f4f6", borderRadius: 6, padding: "3px 8px", fontSize: 12, fontWeight: 600, color: STAFF_COLORS[c.staff] }}>{c.staff}</span>
                       </td>
@@ -413,7 +443,7 @@ export default function App() {
                           <span style={{ width: 5, height: 5, borderRadius: "50%", background: sc.dot, display: "inline-block" }} />{c.stage}
                         </span>
                       </td>
-                      <td style={{ padding: "11px 12px", fontSize: 12, color: "#6b7280", borderRadius: "0 8px 8px 0", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      <td style={{ padding: "11px 12px", fontSize: 12, color: "#6b7280", borderRadius: "0 8px 8px 0", maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                         {c.memo || <span style={{ color: "#d1d5db" }}>—</span>}
                       </td>
                     </tr>
@@ -482,13 +512,37 @@ export default function App() {
       {showModal && selected && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 100 }}
           onClick={e => e.target === e.currentTarget && setShowModal(false)}>
-          <div style={{ background: "#fff", borderRadius: 16, padding: 28, width: 500, boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
+          <div style={{ background: "#fff", borderRadius: 16, padding: 28, width: 520, boxShadow: "0 20px 60px rgba(0,0,0,0.3)", maxHeight: "90vh", overflowY: "auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
               <span style={{ background: "#f0fdf4", color: "#16a34a", borderRadius: 6, padding: "2px 8px", fontSize: 12, fontWeight: 800 }}>종합소득세</span>
+              {selected.proxy && <span style={{ background: "#fef3c7", color: "#92400e", borderRadius: 6, padding: "2px 8px", fontSize: 12, fontWeight: 800 }}>신고대리</span>}
               <span style={{ fontSize: 11, color: "#9ca3af" }}>No. {selected.no}</span>
             </div>
-            <h2 style={{ margin: "0 0 4px", fontSize: 17, fontWeight: 800, color: "#111827" }}>{selected.name}</h2>
+            <h2 style={{ margin: "0 0 4px", fontSize: 17, fontWeight: 800, color: "#111827" }}>{selected.name.replace(/^\[신고대리\] /, "")}</h2>
             <div style={{ fontSize: 12, color: "#6b7280", marginBottom: 18 }}>담당: {selected.staff}</div>
+
+            {/* 매출액 + 소득유형 */}
+            <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>
+              <div style={{ flex: 1 }}>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#374151", display: "block", marginBottom: 7 }}>매출액 (원)</label>
+                <input
+                  type="number"
+                  value={editRevenue}
+                  onChange={e => setEditRevenue(e.target.value)}
+                  placeholder="0"
+                  style={{ width: "100%", borderRadius: 8, border: "1px solid #d1d5db", padding: "9px 12px", fontSize: 13, outline: "none", boxSizing: "border-box" }}
+                />
+                {editRevenue > 0 && <div style={{ fontSize: 11, color: "#6b7280", marginTop: 4 }}>{fmtRev(Number(editRevenue))}</div>}
+              </div>
+              <div style={{ flex: 1 }}>
+                <label style={{ fontSize: 12, fontWeight: 700, color: "#374151", display: "block", marginBottom: 7 }}>소득유형</label>
+                <select value={editIncomeType} onChange={e => setEditIncomeType(e.target.value)}
+                  style={{ width: "100%", borderRadius: 8, border: "1px solid #d1d5db", padding: "9px 12px", fontSize: 13, cursor: "pointer", boxSizing: "border-box" }}>
+                  {INCOME_TYPES.map(t => <option key={t}>{t}</option>)}
+                </select>
+              </div>
+            </div>
+
             <div style={{ marginBottom: 16 }}>
               <label style={{ fontSize: 12, fontWeight: 700, color: "#374151", display: "block", marginBottom: 8 }}>신고 단계</label>
               <div style={{ display: "flex", gap: 7, flexWrap: "wrap" }}>
