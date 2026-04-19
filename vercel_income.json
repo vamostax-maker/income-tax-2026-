@@ -1,4 +1,10 @@
 {
-  "buildCommand": "CI=false npm run build",
-  "outputDirectory": "build"
+  "buildCommand": "react-scripts build",
+  "outputDirectory": "build",
+  "env": {
+    "CI": "false"
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }
