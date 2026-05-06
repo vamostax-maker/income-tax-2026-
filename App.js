@@ -13,12 +13,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const STAGES = ["작성중(담당자)", "1차 결재중(팀장)", "재무제표 발송", "신고서 초안 발송", "납부서 발송"];
+const STAGES = ["작성중(담당자)", "1차 결재중(팀장)", "신고서 초안 발송[신고서+요약표+청구서]", "납부서 발송"];
 const STAGE_COLOR = {
   "작성중(담당자)":    { bg: "#fff3cd", text: "#856404", dot: "#ffc107" },
   "1차 결재중(팀장)": { bg: "#cfe2ff", text: "#084298", dot: "#0d6efd" },
-  "재무제표 발송":     { bg: "#ffe4e1", text: "#9b1c1c", dot: "#ef4444" },
-  "신고서 초안 발송":  { bg: "#d1e7dd", text: "#0a3622", dot: "#198754" },
+  "신고서 초안 발송[신고서+요약표+청구서]": { bg: "#d1e7dd", text: "#0a3622", dot: "#198754" },
   "납부서 발송":       { bg: "#e2d9f3", text: "#432874", dot: "#6f42c1" },
 };
 
@@ -109,9 +108,9 @@ const RAW = [
   { no:75, staff:"박지석", name:"안목",                                      proxy:false, revenue:285598269,   incomeType:"사업소득" },
   { no:76, staff:"박지석", name:"이모델클랜",                                proxy:false, revenue:69225073,    incomeType:"사업소득" },
   { no:77, staff:"박지석", name:"엔오",                                      proxy:false, revenue:97496185,    incomeType:"사업소득" },
-  { no:78, staff:"박지석", name:"제이에이치홀딩스(펀카)",                          proxy:false, revenue:209289504,   incomeType:"사업+기타" },
+  { no:78, staff:"박지석", name:"펀카(개인사업자)",                          proxy:false, revenue:209289504,   incomeType:"사업+기타" },
   { no:79, staff:"박지석", name:"요나0209",                                  proxy:false, revenue:260220939,   incomeType:"사업소득" },
-  { no:80, staff:"박지석", name:"[폐업] 아이퍼니키즈룸",                            proxy:false, revenue:26410119,    incomeType:"사업소득" },
+  { no:80, staff:"박지석", name:"아이퍼니키즈룸",                            proxy:false, revenue:26410119,    incomeType:"사업소득" },
   { no:81, staff:"박지석", name:"[신고대리] 플러스씨원(플러스프로)",         proxy:true,  revenue:33262003,    incomeType:"사업+근로+기타" },
   { no:82, staff:"박지석", name:"[신고대리] 오케이비즈(플러스프로)",         proxy:true,  revenue:25892903,    incomeType:"사업+근로+기타" },
   { no:83, staff:"박지석", name:"[신고대리] 고든소프트웨어_무브앤발란스",    proxy:true,  revenue:0,           incomeType:"사업소득" },
@@ -139,7 +138,7 @@ const RAW = [
   { no:104, staff:"임유빈", name:"공차 숭실대점(탁은지)",                    proxy:false, revenue:168484319,   incomeType:"사업소득" },
   { no:105, staff:"임유빈", name:"보드람치킨(윤영단 대표)",                  proxy:false, revenue:197524871,   incomeType:"사업소득" },
   { no:106, staff:"임유빈", name:"처갓집 양념치킨 청라호수공원(김영서)",     proxy:false, revenue:544747263,   incomeType:"사업(복식부기)" },
-  { no:107, staff:"임유빈", name:"[폐업]보드람치킨(김영서)",                proxy:false, revenue:132609699,   incomeType:"사업소득" },
+  { no:107, staff:"임유빈", name:"보드람치킨(폐업) (김영서)",                proxy:false, revenue:132609699,   incomeType:"사업소득" },
   { no:108, staff:"임유빈", name:"처갓집양념통닭 루원시티(김영기)",          proxy:false, revenue:486088430,   incomeType:"사업소득" },
   { no:109, staff:"임유빈", name:"제이비엠 영어 학원(대표 민정빈)",          proxy:false, revenue:195582300,   incomeType:"사업(복식부기)" },
   { no:110, staff:"임유빈", name:"케이티와이(대표 김태영)",                  proxy:false, revenue:171634977,   incomeType:"사업소득" },
@@ -357,7 +356,7 @@ export default function App() {
             </div>
             <div style={{ textAlign: "center", background: "rgba(255,255,255,0.1)", borderRadius: 10, padding: "8px 14px" }}>
               <div style={{ fontSize: 10, color: "#86efac" }}>신고서 초안</div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "#fbbf24" }}>{clients.filter(c => c.stage === "신고서 초안 발송").length}명</div>
+              <div style={{ fontSize: 20, fontWeight: 900, color: "#fbbf24" }}>{clients.filter(c => c.stage === "신고서 초안 발송[신고서+요약표+청구서]").length}명</div>
             </div>
             <div style={{ textAlign: "center" }}>
               <div style={{ fontSize: 44, fontWeight: 900, lineHeight: 1, color: completionRate >= 80 ? "#4ade80" : completionRate >= 50 ? "#fbbf24" : "#f87171" }}>{completionRate}%</div>
